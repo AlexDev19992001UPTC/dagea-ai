@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAGEA AI - Asistente Geográfico</title>
+    
+    <!-- Fuente Inter de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Iconos Phosphor -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Hoja de estilos -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Fondo animado (Red Neuronal) -->
+    <canvas id="neural-canvas"></canvas>
+
+    <!-- Encabezado -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="ph ph-globe-hemisphere-west"></i>
+            </div>
+            <div class="logo-text">
+                <span>DAGEA</span>
+                <small>Geografía Aplicada</small>
+            </div>
+        </div>
+        
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Módulos</a>
+            <a href="#">Recursos</a>
+        </nav>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="main-container">
+        
+        <!-- Panel Izquierdo: Información y Sugerencias -->
+        <section class="info-panel">
+            <div class="badge">
+                <i class="ph ph-sparkle"></i>
+                <span>Asistente IA v1.0</span>
+            </div>
+            
+            <h1>GeoAI Assistant</h1>
+            <p class="subtitle">
+                Tu tutor personal de geografía. Pregúntame sobre cartografía, 
+                análisis espacial, ecosistemas, coordenadas y mucho más.
+            </p>
+
+            <!-- Sugerencias rápidas -->
+            <div class="suggestions">
+                <span class="label">Prueba preguntar:</span>
+                
+                <button class="suggestion-btn" onclick="sendSuggestion('¿Qué es la cartografía?')">
+                    ¿Qué es la cartografía?
+                </button>
+                
+                <button class="suggestion-btn" onclick="sendSuggestion('Explica las coordenadas geográficas')">
+                    Coordenadas geográficas
+                </button>
+                
+                <button class="suggestion-btn" onclick="sendSuggestion('¿Qué es un SIG o GIS?')">
+                    ¿Qué es un SIG?
+                </button>
+                
+                <button class="suggestion-btn" onclick="sendSuggestion('¿Cuál es la diferencia entre latitud y longitud?')">
+                    Latitud vs Longitud
+                </button>
+            </div>
+        </section>
+
+        <!-- Panel Derecho: Chat -->
+        <section class="chat-panel">
+            
+            <!-- Cabecera del chat -->
+            <div class="chat-header">
+                <div class="avatar">
+                    <i class="ph ph-robot"></i>
+                </div>
+                <div class="chat-info">
+                    <h3>GeoAI</h3>
+                    <div class="status">
+                        <span class="dot"></span>
+                        En línea
+                    </div>
+                </div>
+            </div>
+
+            <!-- Área de mensajes -->
+            <div class="chat-messages" id="chatMessages">
+                <!-- Mensaje de bienvenida -->
+                <div class="message bot">
+                    <div class="msg-avatar">
+                        <i class="ph ph-robot"></i>
+                    </div>
+                    <div class="msg-content">
+                        <div class="bubble">
+                            ¡Hola! 👋 Soy <strong>GeoAI</strong>.<br><br>
+                            Estoy aquí para ayudarte a aprender geografía, cartografía y análisis espacial.<br><br>
+                            ¿Qué tema te gustaría explorar hoy?
+                        </div>
+                        <span class="time">Ahora</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Indicador de escritura -->
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="msg-avatar">
+                    <i class="ph ph-robot"></i>
+                </div>
+                <div class="typing-dots">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+
+            <!-- Input de texto -->
+            <div class="chat-input-area">
+                <div class="input-wrapper">
+                    <textarea 
+                        id="messageInput" 
+                        placeholder="Escribe tu pregunta geográfica..." 
+                        rows="1"
+                        onkeydown="handleKeyDown(event)"
+                        oninput="autoResize(this)"
+                    ></textarea>
+                    <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+                        <i class="ph ph-paper-plane-right"></i>
+                    </button>
+                </div>
+                <div class="input-footer">
+                    <span class="powered">Powered by DAGEA AI</span>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Script principal -->
+    <script src="script.js"></script>
+</body>
+</html>
