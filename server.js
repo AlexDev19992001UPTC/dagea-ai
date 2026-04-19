@@ -1,16 +1,26 @@
 // ==========================================
 // DAGEA AI - Servidor Backend (Google Gemini)
-// ✅ VERSIÓN FINAL - FUNCIONAL 100%
-// Módulo de Enseñanza Geográfica
 // ==========================================
 
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config();
+
+// ✅ Cargar dotenv SOLO si estamos en desarrollo local
+// En producción (Render), las variables ya están en process.env
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
+
+// ✅ Verificar inmediatamente que tenemos la API Key
+const apiKey = process.env.GEMINI_API_KEY;
+console.log('🔑 API Key cargada:', apiKey ? '✅ SÍ (' + apiKey.substring(0, 10) + '...)' : '❌ NO');
+console.log('🌍 NODE_ENV:', process.env.NODE_ENV || 'undefined');
+console.log('📦 Todas las env vars:', Object.keys(process.env).filter(k => k.includes('API') || k.includes('ENV')).join(', '));
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// ... el resto del código sigue igual ...
 // ==========================================
 // MIDDLEWARE
 // ==========================================
