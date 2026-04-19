@@ -1,0 +1,21 @@
+﻿# === DAGEA AI - .gitignore ===
+
+# Dependencias de Node (NUNCA subir)
+node_modules/
+
+# Variables de entorno (NUNCA subir - contiene API Keys)
+.env
+*.env.local
+*.env.production
+
+# Logs
+*.log
+npm-debug.log*
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# IDE / Editores
+.vscode/
+.idea/
